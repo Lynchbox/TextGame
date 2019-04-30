@@ -40,7 +40,7 @@ play x = do
   hFlush stdout
   response <- trim <$> getLine
   if response `elem` ["q", "quit"]
-    then return ("Adiós!", gameData)
+    then return ("Bye!", gameData)
     else play . return $ runState (exec response) gameData
 
 exec :: String -> GameState
