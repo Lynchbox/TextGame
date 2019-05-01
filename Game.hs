@@ -33,7 +33,7 @@ data Game = Game
 gameData = Game { roomMap = Map.fromList
   [("corridor",
     Room.Room { Room.name = "Corridor"
-         , Room.description = "ayyyy"
+         , Room.description = "placeholder"
          , Room.directions = Map.fromList [
              (North, "dining hall") ]
          , Room.visited = False
@@ -41,7 +41,7 @@ gameData = Game { roomMap = Map.fromList
         })
   ,("dining hall",
     Room.Room { Room.name = "Dining Hall"
-         , Room.description = "good food is here"
+         , Room.description = "food is left out on the tables"
          , Room.directions = Map.fromList [
              (South, "corridor") ]
          , Room.visited = False
