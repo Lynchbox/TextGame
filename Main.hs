@@ -24,7 +24,7 @@ trim = foldr pickChars []
     pickChars c1 [] = [c1]
 
 travel :: Direction -> GameState
-travel d = state $ \g -> fromMaybe ("You can't go that way.", g)
+travel d = state $ \g -> fromMaybe ("placeholder", g)
   (flip runState g . Game.enterRoom <$>
     Room.roomInDirection d (Game.currentRoom g))
 
