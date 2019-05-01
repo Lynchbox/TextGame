@@ -50,6 +50,6 @@ exec s
   | take 4 s == "take" || take 3 s == "get" = Game.takeItem s
   | s `elem` ["i", "inv", "inventory"] = Game.displayInv
   | s `elem` [" ", ""] = return ""
-  | otherwise = return "What?"
+  | otherwise = return "Not a command"
   where
     direction = directionFromString s
