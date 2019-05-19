@@ -16,7 +16,7 @@ import Direction
 import Item (Item)
 import qualified Item as Item
 
-data Room = Room
+data Room = Room -- room variables
   { name :: String
   , description :: String
   , directions :: Map Direction String
@@ -24,17 +24,17 @@ data Room = Room
   , items :: [Item]
   } deriving (Show, Eq)
 
-roomInDirection :: Direction -> Room -> Maybe String
+roomInDirection :: Direction -> Room -> Maybe String -- moves to room in inputed direction
 roomInDirection d r = Map.lookup d (directions r)
 
-nameWithDescription :: Room -> String
+nameWithDescription :: Room -> String -- room name + description
 nameWithDescription r = name r ++ '\n':(description r)
 
-look :: Room -> IO ()
+look :: Room -> IO () -- look command
 look = putStrLn . nameWithDescription
 
-findItem :: String -> Room -> Maybe Item
+findItem :: String -> Room -> Maybe Item -- checks if an item is set for the room 
 findItem n = find (\i -> isInfixOf (Item.name i) n) . items
 
-removeItem :: Item -> Room -> Room
+removeItem :: Item -> Room -> Room -- removes item from room
 removeItem i r = r { items = delete i (items r) }
