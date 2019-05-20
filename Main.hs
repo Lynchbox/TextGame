@@ -24,7 +24,7 @@ trim = foldr pickChars []
     pickChars c1 [] = [c1]
 
 travel :: Direction -> GameState -- direction control
-travel d = state $ \g -> fromMaybe ("Your path is blocked", g) --message displayed if no room exists
+travel d = state $ \g -> fromMaybe ("You get an uncomfortable feeling going this way, maybe you should think again?", g) --message displayed if wrong way
   (flip runState g . Game.enterRoom <$>
     Room.roomInDirection d (Game.currentRoom g))
 
@@ -49,7 +49,9 @@ exec s
   | isJust direction = travel (fromJust direction) --move in the inputted direction
   | take 4 s == "take" || take 3 s == "get" = Game.takeItem s --takes the item from the room
   | s `elem` ["i", "inv", "inventory"] = Game.displayInv -- displays players inventory
-  | s `elem` ["m", "map"] = return "The Map is old and barely readable, but you can make out the feignt directions of south, east, south east, ,west, north would lead you to a small room with a diamond in the middle" 
+  | s `elem` ["icey map", "Icey map"] = return "The ice map seems to lead to the east" -- reads the map
+  | s `elem` ["ashy map", "Ashy map"] = return "The ashy map seems to lead to the north" -- reads the map
+  | s `elem` ["bark map", "Bark map"] = return "The bark map seems to lead to the north west" -- reads the map
   | otherwise = return "Not a command" -- if none of these are entered displays error message
   where
     direction = directionFromString s
